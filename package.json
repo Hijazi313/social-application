@@ -1,0 +1,47 @@
+{
+  "name": "social-app",
+  "version": "0.1.0",
+  "description": "a node react apollo graphql social networking application",
+  "main": "index.js",
+  "engines": {
+    "node": "14.11.0",
+    "npm": "7.0.2"
+  },
+  "scripts": {
+    "start": "pm2 start index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hijazi313/social-application.git"
+  },
+  "keywords": [
+    "node",
+    "react",
+    "apollo-graphql",
+    "express",
+    "mongodb",
+    "apollo",
+    "graphql"
+  ],
+  "author": "Muhammad Hamza Asif",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hijazi313/social-application/issues"
+  },
+  "homepage": "https://github.com/Hijazi313/social-application#readme",
+  "dependencies": {
+    "apollo-server": "^2.19.0",
+    "apollo-server-express": "^2.19.0",
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^15.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.2",
+    "pm2": "^4.5.0",
+    "validator": "^13.5.1"
+  }
+}
