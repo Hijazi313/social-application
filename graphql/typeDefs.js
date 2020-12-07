@@ -20,7 +20,7 @@ type Comment {
 }
  type Like {
      _id:ID!
-    user: ID!
+    user: User!
  }
 
 type User {
@@ -43,8 +43,8 @@ input CreateUserInput {
     email: String!
 }
 type Query{
-    getPosts: [Post]
-    getPost(postId: ID!):Post!
+    posts: [Post]
+    post(postId: ID!):Post!
 }
 
 type Mutation{
