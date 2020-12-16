@@ -14,6 +14,7 @@ const userSchema = new Schema({
         type:String,
         unique:[true, "Email Must be Unique"],
         required:[true, "User email is Required"],
+        lowercase:true,
         validate: (value)=>{
             const email = isEmail(value);
             if(!email) throw new Error(`${value} is not a valid email address`)

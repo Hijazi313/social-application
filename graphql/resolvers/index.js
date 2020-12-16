@@ -14,6 +14,10 @@ module.exports = {
      },
      Like:{
         user: async (parent) =>  await User.findById(parent.user)},
+        Comment: {
+            user: async (parent) => await User.findById(parent.user)
+        },
+    
     Query:{
         ...post.Query,
     },

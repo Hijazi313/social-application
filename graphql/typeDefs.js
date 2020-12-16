@@ -15,7 +15,7 @@ type Post{
 type Comment {
     _id: ID!
     body: String!
-    user: ID!
+    user: User!
     createdAt: String!
 }
  type Like {

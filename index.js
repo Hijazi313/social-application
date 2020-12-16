@@ -20,7 +20,9 @@ const httpServer = createServer(app);
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context:({req})=>({req, pubsub})
+    context:({req})=>({req, pubsub}),
+    formatResponse:(res)=> console.log(res),
+    formatRequest: req => console.log(req)
 });
 
 // CONNECT TO MONGODB
@@ -40,5 +42,6 @@ mongoose.connect(process.env.MONGODB_URI,
 })
 .catch((error)=> console.error(error))
 
+  // TODO: Error Handling with Context API
 
 
