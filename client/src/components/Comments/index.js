@@ -7,11 +7,16 @@ import { DeleteFilled } from '@ant-design/icons';
 import { AuthContext } from '../../context/auth';
 import { DELETE_COMMENT } from '../../gql/mutations';
 
-export default function PostComments({commentCount, comments, }) {
+export default function PostComments({commentCount, comments, postId }) {
  const {user} = useContext(AuthContext);
-  const {} = useMutation(DELETE_COMMENT)
- const deleteComment = ()=>{
-
+  const [delcomment] = useMutation(DELETE_COMMENT, {
+    update:async (proxy, result)=>{
+      console.log(result.data);
+    },
+    onError: (error)=> console.log(error)
+  })
+ const deleteComment = (commentId)=>{
+    delcomment({variables:{postId, commentId}})
  }
   return (
         <List
@@ -21,7 +26,6 @@ export default function PostComments({commentCount, comments, }) {
     dataSource={comments}
     renderItem={item => (
       <li>
-{item.user._id}
         <Comment
           actions={item.actions}
           author={item.user.name}
@@ -29,7 +33,7 @@ export default function PostComments({commentCount, comments, }) {
           content={item.body}
           datetime={moment().fromNow(item.createdAt)}
         />
-        {user && user._id===item.user._id  && <DeleteFilled onClick={deleteComment}  /> }
+        {user && user._id===item.user._id  && <DeleteFilled onClick={()=>deleteComment(item._id)}  /> }
 
       </li>
     )}
