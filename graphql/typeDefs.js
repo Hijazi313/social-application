@@ -9,14 +9,18 @@ type Post{
         comments:[Comment]!
         likes:[Like]!
         likeCount: Int!
-        commentCount: Int!
+        commentCount: String!
+        updatedAt: String!
+
     }
 
 type Comment {
     _id: ID!
     body: String!
     user: User!
+    post: Post!
     createdAt: String!
+    updatedAt: String!
 }
  type Like {
      _id:ID!
@@ -28,6 +32,8 @@ type User {
     email: String!
     password: String!
     name: String!
+    post:[Post]
+    comment:[Comment]!
     createdAt:  String!
     updatedAt:String!
 }
@@ -45,6 +51,7 @@ input CreateUserInput {
 type Query{
     posts: [Post]
     post(postId: ID!):Post!
+
 }
 
 type Mutation{

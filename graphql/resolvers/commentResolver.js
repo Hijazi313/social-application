@@ -1,8 +1,21 @@
 const { UserInputError, AuthenticationError } = require("apollo-server");
+const Comment = require("../../models/commentSchema");
 const Post = require("../../models/postSchema");
 const checkAuth = require("../../utils/checkAuth");
 
 module.exports = {
+    Query:{
+        comments: async(parent, args, context)=>{
+            console.log("args",args);
+            if (args.userId){
+                return Comment.find({user: args.userId})            
+            }
+            else{
+                return Comment.find({post: args.postId})            
+            }
+        }
+    },
+
     Mutation: {
         createComment: async (_, {postId, body}, context)=>{
             const {_id} = checkAuth(context)
@@ -12,19 +25,9 @@ module.exports = {
                     body:"Comment Body must not be empty"
                 }})
 
-                const post  = await Post.findById(postId);
-
-                if(post){
-                    post.comments.unshift({
-                        body,
-                        user: _id
-                    })
-                    await post.save()
-                    return post
-                }
-                else{
-                    throw new UserInputError('Post Not Found')
-                }
+                const comment = new Comment({post:postId, user:_id, body})
+                const newComment = await comment.save();
+                return newComment
             }
             catch(err){
                  throw new Error(err)

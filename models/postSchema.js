@@ -15,9 +15,6 @@ const postSchema = new Schema({
         ref:"users",
         required:[true, "User email is Required"]
     },
-    comments:[
-        commentSchema
-    ],
     likes:[
         {
             user:{type: Schema.Types.ObjectId , ref:"User", },
